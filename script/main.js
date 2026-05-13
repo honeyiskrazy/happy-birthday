@@ -56,7 +56,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Set music source
   const audio = document.querySelector(".song");
   if (audio && CONFIG.music) {
-    audio.querySelector("source").src = CONFIG.music;
+    const source = audio.querySelector("source");
+    if (source) {
+      source.src = CONFIG.music;
+      // Handle standard audio types
+      if (CONFIG.music.toLowerCase().endsWith(".mpeg") || CONFIG.music.toLowerCase().endsWith(".mp3")) {
+        source.type = "audio/mpeg";
+      } else if (CONFIG.music.toLowerCase().endsWith(".wav")) {
+        source.type = "audio/wav";
+      } else if (CONFIG.music.toLowerCase().endsWith(".ogg")) {
+        source.type = "audio/ogg";
+      }
+    }
     audio.load();
   }
 

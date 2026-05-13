@@ -1,7 +1,7 @@
 const CONFIG = {
   name: "Sana",
   photo: "./img/sana.jpg",
-  music: "./music/hbd.mpeg",
+  music: "./music/hbd.mp3",
 
   colors: {
     primary: "#D4A373",

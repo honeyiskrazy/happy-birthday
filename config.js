@@ -1,119 +1,51 @@
-/**
- * ✨ EDIT THIS FILE to customize the birthday greeting! ✨
- *
- * This is the ONLY file you need to modify.
- * No need to touch HTML, CSS, or any other JavaScript files.
- *
- * AVAILABLE SECTION TYPES:
- *   "greeting"      → Opening greeting with recipient's name
- *   "announcement"  → Birthday announcement text
- *   "chatbox"       → Chat message with typing animation
- *   "ideas"         → Sequential text reveals, one by one
- *   "quote"         → Styled quote card with optional author
- *   "countdown"     → Animated 3-2-1 countdown
- *   "stars"         → Twinkling stars background
- *   "fireworks"     → Colorful firework sparks burst
- *   "balloons"      → Floating balloon animation
- *   "profile"       → Profile photo with birthday wish
- *   "confetti"      → Confetti burst animation
- *   "closing"       → Closing message with replay button
- *
- * HOW TO USE:
- *   REMOVE a section  → Delete its object from the sections array
- *   DUPLICATE          → Copy-paste any section object
- *   REORDER            → Move the section object up/down in the array
- *   EDIT TEXT          → Change the string values
- */
-
 const CONFIG = {
-  // ── Recipient Info ────────────────────────────────────────────
-  name: "Irene",
-  photo: "./img/irene.jpg",       // Place your photo in the img/ folder
-  music: "./music/hbd.mpeg",      // Place your music in the music/ folder
+  name: "Sana",
+  photo: "./img/sana.jpg",
+  music: "./music/hbd.mpeg",
 
-  // ── Theme Colors ──────────────────────────────────────────────
-  // A toggle button lets the viewer switch between dark & light mode.
   colors: {
-    primary: "#f472b6",           // Main accent color (rose pink)
-    accent: "#60a5fa",            // Secondary accent color (sky blue)
+    primary: "#D4A373",
+    accent: "#C9184A",
     dark: {
-      background: "#0f172a",      // Slate 900
-      text: "#f1f5f9",            // Slate 100
+      background: "#120D14",
+      text: "#FAF3E0",
     },
     light: {
-      background: "#fafaf9",      // Stone 50
-      text: "#1e293b",            // Slate 800
+      background: "#FFF8F0",
+      text: "#2B2D42",
     },
   },
 
-  // ── Default Color Mode ────────────────────────────────────────
-  // Options: "dark" or "light"
   defaultMode: "dark",
 
-  // ── Sections ──────────────────────────────────────────────────
-  // Add, remove, duplicate, or reorder as you wish!
   sections: [
+    { type: "greeting", title: "Hey,", subtitle: "A small birthday note, drawn in code for your art." },
+    { type: "countdown", from: 3, goText: "Gift" },
+    { type: "announcement", text: "For the artist who turns letters into feeling." },
+    { type: "balloons", count: 16 },
+    { type: "profile", wishTitle: "Happy Birthday!", wishText: "From Team Growziq, with warm birthday wishes." },
+    { type: "candle", instruction: "Make a wish, Sana, then tap the flame." },
     {
-      type: "greeting",
-      title: "Hi",
-      subtitle: "I really like your name btw!",
+      type: "scratch",
+      title: "A Birthday Gift From Growziq",
+      preText: "We saved one thoughtful stroke for last...",
+      discount: "Free",
+      description: "DOMAIN SETUP",
+      code: "GROWZIQ-DOMAIN",
+      validity: "Domain, DNS, SSL and launch setup included",
+      footnote: "Because beautiful art deserves a beautiful online home.",
     },
-    {
-      type: "countdown",
-      from: 3,                    // Countdown from this number
-      goText: "🎉",              // Text shown after countdown ends
-    },
-    {
-      type: "announcement",
-      text: "It's your birthday!! :D",
-    },
-    {
-      type: "chatbox",
-      message:
-        "Happy birthday to youu!! Wishing you a wonderful year ahead filled with joy, love, and endless happiness!",
-      buttonText: "Send",
-    },
-    {
-      type: "ideas",
-      lines: [
-        "That's what I was going to do.",
-        "But then I stopped.",
-        "I realised, I wanted to do something <strong>special</strong>.",
-        "Because,",
-        "You are Special <span>:)</span>",
-      ],
-      bigLetters: "SO",
-    },
+    { type: "stars", count: 36 },
     {
       type: "quote",
-      text: "The more you praise and celebrate your life, the more there is in life to celebrate.",
-      author: "Oprah Winfrey",
+      text: "You turn ink into emotion. Today, we wrapped a little code around that magic.",
+      author: "Team Growziq",
     },
-    {
-      type: "stars",
-      count: 40,
-    },
-    {
-      type: "balloons",
-      count: 25,
-    },
-    {
-      type: "profile",
-      wishTitle: "Happy Birthday!",
-      wishText: "May the js.prototypes always be with you! ;)",
-    },
-    {
-      type: "fireworks",
-      count: 24,
-    },
-    {
-      type: "confetti",
-      count: 9,
-    },
+    { type: "fireworks", count: 18 },
     {
       type: "closing",
-      text: "Okay, now come back and tell me if you liked it.",
-      replayText: "Or click, if you want to watch it again.",
+      text: "Here's to another year of ink, elegance, and beautiful creations. - Team Growziq",
+      replayText: "Replay the birthday note",
     },
   ],
 };

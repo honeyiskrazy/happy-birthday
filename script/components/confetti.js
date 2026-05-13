@@ -46,10 +46,10 @@
     animate(tl, el) {
       // Shorter, less intrusive confetti — scale smaller, fewer repeats
       tl.to(el.querySelectorAll(".confetti-dot"), {
-        duration: 1, visibility: "visible", opacity: 0,
-        scale: 40, repeat: 2, repeatDelay: 0.8, stagger: 0.15,
+        duration: 0.6, visibility: "visible", opacity: 0,
+        scale: 40, repeat: 2, repeatDelay: 0.5, stagger: 0.1,
       })
-      .to(el, { duration: 0.3, opacity: 0 });
+      .to(el, { duration: 0.2, opacity: 0 });
     },
   };
 })();

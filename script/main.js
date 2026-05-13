@@ -17,6 +17,9 @@ function applyTheme(mode) {
   const theme = c[mode] || c.dark || {};
   root.style.setProperty("--bg", theme.background || "#1a1a2e");
   root.style.setProperty("--text", theme.text || "#ffffff");
+  root.style.setProperty("--surface", mode === "dark" ? "rgba(250, 243, 224, 0.08)" : "rgba(43, 45, 66, 0.06)");
+  root.style.setProperty("--surface-strong", mode === "dark" ? "rgba(250, 243, 224, 0.14)" : "rgba(43, 45, 66, 0.10)");
+  root.style.setProperty("--ink-line", mode === "dark" ? "rgba(212, 163, 115, 0.22)" : "rgba(201, 24, 74, 0.16)");
 
   // Update toggle icon
   const btn = document.getElementById("theme-toggle");
@@ -83,29 +86,68 @@ document.addEventListener("DOMContentLoaded", async () => {
     rendered.push({ el, comp, section });
   });
 
-  // SweetAlert music prompt
+  // SweetAlert music prompt.
   const isDark = currentMode === "dark";
   Swal.fire({
-    title: "Play music in the background?",
-    icon: "question",
+    title: `For ${CONFIG.name}`,
+    text: "Open your birthday surprise from Team Growziq.",
     showCancelButton: true,
-    confirmButtonColor: CONFIG.colors.accent || "#3085d6",
-    cancelButtonColor: "#888",
-    confirmButtonText: "Yes!",
-    cancelButtonText: "No",
-    background: isDark ? "#1e293b" : "#ffffff",
-    color: isDark ? "#f1f5f9" : "#1e293b",
+    confirmButtonColor: CONFIG.colors.primary || "#D4A373",
+    cancelButtonColor: "#6f6a66",
+    confirmButtonText: "Open with music",
+    cancelButtonText: "View quietly",
+    background: isDark ? "#211722" : "#ffffff",
+    color: isDark ? "#FAF3E0" : "#2B2D42",
   }).then((result) => {
+    document.querySelectorAll(".swal2-container").forEach((el) => el.remove());
+
     if (result.isConfirmed && audio) {
+      audio.volume = 0;
       audio.play().catch(() => {});
+      // Smooth fade-in
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        vol = Math.min(vol + 0.05, 1);
+        audio.volume = vol;
+        if (vol >= 1) clearInterval(fadeIn);
+      }, 100);
     }
     buildTimeline(rendered);
   });
 });
 
+// ── Skip Button ───────────────────────────────────────────────────
+function createSkipButton(getTl) {
+  const btn = document.createElement("button");
+  btn.id = "skip-btn";
+  btn.textContent = "Tap to Skip >";
+  btn.setAttribute("aria-label", "Skip current section");
+  document.body.appendChild(btn);
+
+  btn.addEventListener("click", () => {
+    const tl = getTl();
+    if (!tl) return;
+    if (tl.paused()) {
+      // Resume from a pause point (candle / gift)
+      tl.play();
+    } else {
+      // Skip ahead in auto-playing sections
+      tl.seek(tl.time() + 3, false);
+    }
+  });
+}
+
 // ── Timeline Builder ─────────────────────────────────────────────
 function buildTimeline(rendered) {
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({
+    onComplete: () => {
+      const btn = document.getElementById("skip-btn");
+      if (btn) btn.style.opacity = "0";
+    },
+  });
+
+  // Give skip button access to the timeline
+  createSkipButton(() => tl);
 
   tl.to(".container", { duration: 0.6, visibility: "visible" });
 
@@ -121,8 +163,21 @@ function buildTimeline(rendered) {
       deferredExits = [];
     }
 
+    // Hide skip button when reaching candle section (and all sections after it)
+    if (section.type === "candle") {
+      tl.to("#skip-btn", { duration: 0.5, opacity: 0, pointerEvents: "none" });
+    }
+
     // Animate
     comp.animate(tl, el, CONFIG);
+
+    // Show bunting banner specifically after balloons section starts
+    if (section.type === "balloons") {
+      tl.call(() => {
+        const bunting = document.getElementById("bunting");
+        if (bunting) bunting.classList.add("is-visible");
+      });
+    }
 
     // Handle exit lifecycle
     if (comp.exit) {

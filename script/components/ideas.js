@@ -41,47 +41,47 @@
 
       // Regular lines: enter → wait → leave
       regularLines.forEach((line) => {
-        tl.fromTo(line, { ...ENTER }, { opacity: 1, y: 0, rotationX: 0, skewX: "0deg", duration: 0.7 });
+        tl.fromTo(line, { ...ENTER }, { opacity: 1, y: 0, rotationX: 0, skewX: "0deg", duration: 0.5 });
 
         const strong = line.querySelector("strong");
         if (strong) {
           tl.to(strong, {
-            duration: 0.5, scale: 1.2, x: 10,
+            duration: 0.3, scale: 1.2, x: 10,
             backgroundColor: "var(--accent)", color: "#fff",
           });
         }
 
-        tl.to(line, { duration: 0.7, ...LEAVE }, "+=2.5");
+        tl.to(line, { duration: 0.5, ...LEAVE }, "+=1.5");
       });
 
       // Special last line: dramatic entrance
       if (specialLine) {
         tl.fromTo(specialLine,
           { rotationX: 15, rotationZ: -10, skewY: "-5deg", y: 50, z: 10, opacity: 0 },
-          { rotationX: 0, rotationZ: 0, skewY: "0deg", y: 0, z: 0, opacity: 1, duration: 0.7 },
-          "+=1.5"
+          { rotationX: 0, rotationZ: 0, skewY: "0deg", y: 0, z: 0, opacity: 1, duration: 0.5 },
+          "+=1"
         );
 
         const span = specialLine.querySelector("span");
         if (span) {
-          tl.to(span, { duration: 0.7, rotation: 90, x: 8 }, "+=1.4");
+          tl.to(span, { duration: 0.5, rotation: 90, x: 8 }, "+=0.8");
         }
 
         tl.to(specialLine, {
-          duration: 0.7, scale: 0.2, opacity: 0,
-        }, "+=2");
+          duration: 0.5, scale: 0.2, opacity: 0,
+        }, "+=1.2");
       }
 
       // Big letters: stagger in then out
       if (bigLetters.length) {
         tl.fromTo(bigLetters,
           { scale: 3, opacity: 0, rotation: 15 },
-          { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: "expo.out", stagger: 0.2 }
+          { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "expo.out", stagger: 0.15 }
         )
         .to(bigLetters, {
-          duration: 0.8, scale: 3, opacity: 0, rotation: -15,
-          ease: "expo.out", stagger: 0.2,
-        }, "+=1.5");
+          duration: 0.5, scale: 3, opacity: 0, rotation: -15,
+          ease: "expo.out", stagger: 0.15,
+        }, "+=0.8");
       }
     },
   };

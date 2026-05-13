@@ -7,7 +7,7 @@
       div.className = "section section-profile";
       div.innerHTML = `
         <div class="profile-wrapper">
-          <img src="${config.photo}" alt="profile" class="profile-picture" />
+          <img src="${config.photo}" alt="${config.name}'s portrait" class="profile-picture" />
         </div>
         <div class="wish">
           <h3 class="wish-hbd">${section.wishTitle || "Happy Birthday!"}</h3>
@@ -28,28 +28,28 @@
     animate(tl, el) {
       // Photo appears with gentle scale
       tl.from(el.querySelector(".profile-picture"), {
-        duration: 0.8, scale: 0.5, opacity: 0, ease: "back.out(1.4)",
-      }, "-=2")
+        duration: 0.9, scale: 0.5, opacity: 0, ease: "back.out(1.4)",
+      }, "-=3")
       // Wish title letters stagger in
       .from(el.querySelectorAll(".wish-hbd span"), {
-        duration: 0.5, opacity: 0, y: -30,
-        ease: "back.out(1.7)", stagger: 0.06,
+        duration: 0.5, opacity: 0, y: -40,
+        ease: "back.out(1.7)", stagger: 0.08,
       })
       // Color each letter
       .to(el.querySelectorAll(".wish-hbd span"), {
         color: "var(--primary)", duration: 0.4,
-        stagger: 0.04, ease: "none",
-      }, "-=0.3")
+        stagger: 0.06, ease: "none",
+      }, "-=0.2")
       // Wish text fades in
       .from(el.querySelector(".wish-text"), {
-        duration: 0.5, opacity: 0, y: 10,
+        duration: 0.6, opacity: 0, y: 15,
       }, "-=0.2");
     },
 
     exit(tl, el) {
       tl.to(el, {
-        duration: 0.6, opacity: 0, y: 20,
-      });
+        duration: 0.8, opacity: 0, y: 20,
+      }, "+=3");
     },
   };
 })();

@@ -18,17 +18,17 @@
 
     animate(tl, el) {
       tl.from(el.querySelector(".greeting-title"), {
-        duration: 0.7, opacity: 0, y: 10,
+        duration: 1.0, opacity: 0, y: 15, ease: "power2.out"
       })
       .from(el.querySelector(".greeting-subtitle"), {
-        duration: 0.4, opacity: 0, y: 10,
-      })
+        duration: 0.8, opacity: 0, y: 15, ease: "power2.out"
+      }, "-=0.4")
       .to(el.querySelector(".greeting-title"), {
-        duration: 0.7, opacity: 0, y: 10,
+        duration: 0.8, opacity: 0, y: -15, ease: "power2.in"
       }, "+=3.5")
       .to(el.querySelector(".greeting-subtitle"), {
-        duration: 0.7, opacity: 0, y: 10,
-      }, "-=1");
+        duration: 0.8, opacity: 0, y: -15, ease: "power2.in"
+      }, "-=0.6");
     },
   };
 })();

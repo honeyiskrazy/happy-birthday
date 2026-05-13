@@ -27,16 +27,16 @@
       nums.forEach((num) => {
         tl.fromTo(num,
           { scale: 0, opacity: 0, rotation: -180 },
-          { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.7)" }
+          { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.7)" }
         )
-        .to(num, { scale: 2, opacity: 0, duration: 0.4 }, "+=0.8");
+        .to(num, { scale: 1.5, opacity: 0, duration: 0.5 }, "+=0.8");
       });
 
       tl.fromTo(go,
         { scale: 0, opacity: 0 },
-        { scale: 1.2, opacity: 1, duration: 0.6, ease: "elastic.out(1, 0.5)" }
+        { scale: 1.2, opacity: 1, duration: 0.7, ease: "elastic.out(1, 0.5)" }
       )
-      .to(go, { scale: 0, opacity: 0, duration: 0.4 }, "+=1.5");
+      .to(go, { scale: 0, opacity: 0, duration: 0.5 }, "+=1.2");
     },
   };
 })();

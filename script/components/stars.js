@@ -28,9 +28,9 @@
       tl.fromTo(
         el,
         { opacity: 0 },
-        { opacity: 1, duration: 1 }
+        { opacity: 1, duration: 0.6 }
       )
-      .to(el, { opacity: 0, duration: 1 }, "+=4");
+      .to(el, { opacity: 0, duration: 0.6 }, "+=2.5");
     },
   };
 })();

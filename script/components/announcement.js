@@ -12,11 +12,11 @@
 
     animate(tl, el) {
       tl.from(el.querySelector("p"), {
-        duration: 0.7, opacity: 0, y: 10,
+        duration: 0.9, opacity: 0, y: 15, ease: "power2.out"
       })
       .to(el.querySelector("p"), {
-        duration: 0.7, opacity: 0, y: 10,
-      }, "+=3");
+        duration: 0.8, opacity: 0, y: -15, ease: "power2.in"
+      }, "+=3.5");
     },
   };
 })();

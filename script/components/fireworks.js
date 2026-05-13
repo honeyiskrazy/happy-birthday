@@ -31,19 +31,19 @@
       tl.fromTo(sparks,
         { scale: 0, opacity: 0 },
         {
-          scale: 1, opacity: 1, duration: 0.3,
-          stagger: { each: 0.08, from: "random" },
+          scale: 1, opacity: 1, duration: 0.2,
+          stagger: { each: 0.05, from: "random" },
           ease: "back.out(2)",
         }
       )
       .to(sparks, {
         y: () => (Math.random() - 0.5) * window.innerHeight * 0.4,
         x: () => (Math.random() - 0.5) * window.innerWidth * 0.4,
-        opacity: 0, scale: 0, duration: 1.2,
-        stagger: { each: 0.05, from: "random" },
+        opacity: 0, scale: 0, duration: 0.7,
+        stagger: { each: 0.03, from: "random" },
         ease: "power2.out",
-      }, "+=0.5")
-      .to(el, { opacity: 0, duration: 0.3 });
+      }, "+=0.3")
+      .to(el, { opacity: 0, duration: 0.2 });
     },
   };
 })();
